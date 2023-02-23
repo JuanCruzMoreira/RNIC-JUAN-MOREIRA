@@ -1,9 +1,15 @@
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
+
+const isAndroid = Platform.OS === 'android' ? true : false;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#d3fffe',
+    backgroundColor: isAndroid ? '#d3fffe' : '#003344',
+  },
+
+  statusBar: {
+    backgroundColor: isAndroid ? '#d3fffe' : '#003344',
   },
 
   taskList: {

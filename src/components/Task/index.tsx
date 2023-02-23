@@ -8,6 +8,7 @@ const Task = (props: TaskProps): JSX.Element => {
 
   return (
     <View
+      //TODO: sacar este estilo en linea
       style={[{borderColor: toDo ? '#12e068' : '#cb0707'}, styles.container]}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>

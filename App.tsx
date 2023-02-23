@@ -5,8 +5,16 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import {FlatList, KeyboardAvoidingView, SafeAreaView, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  AppState,
+  FlatList,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  StatusBar,
+  Text,
+} from 'react-native';
 
 import styles from './styles';
 import Task from './src/components/Task';
@@ -16,25 +24,31 @@ import AddTaskForm from './src/components/Form';
 
 function App(): JSX.Element {
   const [taskList, setTaskList] = useState(TasksArray);
-  // const [appIsActive, setAppIsActive] = useState(true);
 
   const emptyList = <Text>No hay tasks para mostrar</Text>;
 
-  // useEffect(() => {
-  //   AppState.addEventListener('change', nextAppState => {
-  //     console.log(nextAppState);
-  //     nextAppState === 'active' ? setAppIsActive(true) : setAppIsActive(true);
-  //     console.log('Hola', appIsActive);
-  //   });
-  // });
+  const isAndroid = Platform.OS === 'android' ? true : false;
 
-  // useEffect(() => {
-  //   setTaskList(TasksArray);
-  // }, [appIsActive]);
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (nextAppState !== 'active') {
+        setTaskList([]);
+      }
+    });
+    return () => {
+      subscription.remove();
+    };
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView style={styles.container}>
+      <StatusBar
+        barStyle={isAndroid ? 'dark-content' : 'light-content'}
+        backgroundColor={styles.statusBar.backgroundColor}
+      />
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={isAndroid ? undefined : 'padding'}>
         <FlatList
           style={styles.taskList}
           data={taskList}

@@ -1,5 +1,12 @@
-import React, {useState} from 'react';
-import {Keyboard, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import React, {useRef, useState} from 'react';
+import {
+  Keyboard,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import styles from './styles';
 import {AddTaskFormProps} from './types';
 
@@ -8,10 +15,12 @@ const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  const descriptionInput = useRef<TextInput>(null);
+
   const newTask = {
     title: title,
     description: description,
-    toDo: true,
+    toDo: false,
   };
 
   const handleOnPress = () => {
@@ -20,21 +29,29 @@ const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
   };
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Title"
-        onChangeText={setTitle}
-      />
-      <TextInput
-        style={styles.textInput}
-        placeholder="Description"
-        onChangeText={setDescription}
-      />
-      <TouchableOpacity style={styles.touchable} onPress={handleOnPress}>
-        <Text style={styles.touchableText}>Add Task</Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Title"
+          onChangeText={setTitle}
+          returnKeyType="next"
+          onSubmitEditing={() => {
+            descriptionInput.current?.focus();
+          }}
+          blurOnSubmit={false}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Description"
+          onChangeText={setDescription}
+          ref={descriptionInput}
+        />
+        <TouchableOpacity style={styles.touchable} onPress={handleOnPress}>
+          <Text style={styles.touchableText}>Add Task</Text>
+        </TouchableOpacity>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
