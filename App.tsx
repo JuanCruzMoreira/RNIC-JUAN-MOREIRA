@@ -16,6 +16,7 @@ import {
   Text,
 } from 'react-native';
 
+import RNBootSplash from 'react-native-bootsplash';
 import styles from './styles';
 import Task from './src/components/Task';
 import {TasksArray} from './src/constants';
@@ -30,6 +31,7 @@ function App(): JSX.Element {
   const isAndroid = Platform.OS === 'android' ? true : false;
 
   useEffect(() => {
+    RNBootSplash.hide({fade: true});
     const subscription = AppState.addEventListener('change', nextAppState => {
       if (nextAppState !== 'active') {
         setTaskList([]);
