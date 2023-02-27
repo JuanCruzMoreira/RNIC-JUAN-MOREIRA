@@ -1,15 +1,12 @@
-import {StyleSheet} from 'react-native';
+import styled from 'styled-components/native';
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 12,
-  },
-  title: {
-    color: '#000000',
-    alignSelf: 'center',
-    fontSize: 24,
-    fontWeight: '600',
-  },
-});
+export const Container = styled.View`
+  padding: 12px;
+`;
 
-export default styles;
+export const Title = styled.Text`
+  color: ${({theme}) => theme.colors.black};
+  align-self: center;
+  font-size: 24px;
+  font-weight: 600;
+`;

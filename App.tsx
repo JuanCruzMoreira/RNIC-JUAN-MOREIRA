@@ -6,22 +6,16 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import {
-  AppState,
-  FlatList,
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  StatusBar,
-  Text,
-} from 'react-native';
+import {AppState, FlatList, Platform, Text} from 'react-native';
 
 import RNBootSplash from 'react-native-bootsplash';
-import styles from './styles';
-import Task from './src/components/Task';
+import {SafeArea, StatusBar, Container, TaskList} from './styles';
+import Card from './src/components/Card';
 import {TasksArray} from './src/constants';
 import Header from './src/components/Header';
 import AddTaskForm from './src/components/Form';
+import {myTheme} from './src/constants/theme';
+import {ThemeProvider} from 'styled-components/native';
 
 function App(): JSX.Element {
   const [taskList, setTaskList] = useState(TasksArray);
@@ -43,30 +37,28 @@ function App(): JSX.Element {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar
-        barStyle={isAndroid ? 'dark-content' : 'light-content'}
-        backgroundColor={styles.statusBar.backgroundColor}
-      />
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={isAndroid ? undefined : 'padding'}>
-        <FlatList
-          style={styles.taskList}
-          data={taskList}
-          renderItem={({item, index}) => (
-            <Task
-              title={`${item.title} ${index + 1}`}
-              description={item.description}
-              toDo={item.toDo}
+    <ThemeProvider theme={myTheme}>
+      <SafeArea>
+        <StatusBar barStyle={isAndroid ? 'dark-content' : 'light-content'} />
+        <Container behavior={isAndroid ? undefined : 'padding'}>
+          <TaskList>
+            <FlatList
+              data={taskList}
+              renderItem={({item, index}) => (
+                <Card
+                  title={`${item.title} ${index + 1}`}
+                  description={item.description}
+                  toDo={item.toDo}
+                />
+              )}
+              ListHeaderComponent={<Header title={'Tasks List'} />}
+              ListEmptyComponent={emptyList}
             />
-          )}
-          ListHeaderComponent={<Header title={'Tasks List'} />}
-          ListEmptyComponent={emptyList}
-        />
-        <AddTaskForm taskList={taskList} setTaskList={setTaskList} />
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+          </TaskList>
+          <AddTaskForm taskList={taskList} setTaskList={setTaskList} />
+        </Container>
+      </SafeArea>
+    </ThemeProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import type {PropsWithChildren} from 'react';
 
-export type TaskProps = PropsWithChildren<{
+export type CardProps = PropsWithChildren<{
   title: string;
   description: string;
   toDo: boolean;

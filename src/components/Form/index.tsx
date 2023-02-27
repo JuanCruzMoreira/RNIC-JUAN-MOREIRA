@@ -1,13 +1,6 @@
 import React, {useRef, useState} from 'react';
-import {
-  Keyboard,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
-import styles from './styles';
+import {Keyboard, TextInput, TouchableWithoutFeedback} from 'react-native';
+import {Container, InputText, Button, ButtonText} from './styles';
 import {AddTaskFormProps} from './types';
 
 const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
@@ -30,9 +23,8 @@ const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>
-        <TextInput
-          style={styles.textInput}
+      <Container>
+        <InputText
           placeholder="Title"
           onChangeText={setTitle}
           returnKeyType="next"
@@ -41,16 +33,15 @@ const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
           }}
           blurOnSubmit={false}
         />
-        <TextInput
-          style={styles.textInput}
+        <InputText
           placeholder="Description"
           onChangeText={setDescription}
           ref={descriptionInput}
         />
-        <TouchableOpacity style={styles.touchable} onPress={handleOnPress}>
-          <Text style={styles.touchableText}>Add Task</Text>
-        </TouchableOpacity>
-      </View>
+        <Button onPress={handleOnPress}>
+          <ButtonText>Add Task</ButtonText>
+        </Button>
+      </Container>
     </TouchableWithoutFeedback>
   );
 };

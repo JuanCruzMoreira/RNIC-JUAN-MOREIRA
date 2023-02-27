@@ -1,26 +1,20 @@
-import {Platform, StyleSheet} from 'react-native';
+import styled from 'styled-components/native';
 
-const isAndroid = Platform.OS === 'android' ? true : false;
+export const SafeArea = styled.SafeAreaView`
+  flex: 1;
+  background-color: ${({theme}) => theme.colors.primary};
+`;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: isAndroid ? '#d3fffe' : '#003344',
-  },
+export const StatusBar = styled.StatusBar`
+  background-color: ${({theme}) => theme.colors.primary};
+`;
 
-  statusBar: {
-    backgroundColor: isAndroid ? '#d3fffe' : '#003344',
-  },
+export const Container = styled.KeyboardAvoidingView`
+  flex: 1;
+  background-color: ${({theme}) => theme.colors.primary};
+`;
 
-  taskList: {
-    paddingHorizontal: 24,
-  },
-
-  headerText: {
-    color: '#000000',
-    fontSize: 24,
-    fontWeight: '700',
-  },
-});
-
-export default styles;
+export const TaskList = styled.View`
+  flex: 1;
+  padding: 24px 0;
+`;
