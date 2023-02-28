@@ -4,4 +4,5 @@ export type CardProps = PropsWithChildren<{
   title: string;
   description: string;
   toDo: boolean;
+  imageURL?: string;
 }>;

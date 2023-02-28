@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 export const SafeArea = styled.SafeAreaView`
   flex: 1;
   background-color: ${({theme}) => theme.colors.primary};
+  font-family: 'Lato-Regular';
 `;
 
 export const StatusBar = styled.StatusBar`

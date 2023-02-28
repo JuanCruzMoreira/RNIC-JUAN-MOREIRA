@@ -49,6 +49,7 @@ function App(): JSX.Element {
                   title={`${item.title} ${index + 1}`}
                   description={item.description}
                   toDo={item.toDo}
+                  imageURL={item.imageURL}
                 />
               )}
               ListHeaderComponent={<Header title={'Tasks List'} />}
