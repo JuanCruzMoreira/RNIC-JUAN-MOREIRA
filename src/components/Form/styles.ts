@@ -1,28 +1,22 @@
-import {StyleSheet} from 'react-native';
+import styled from 'styled-components/native';
 
-const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 10,
-    backgroundColor: 'lightgrey',
-    gap: 10,
-  },
-  textInput: {
-    fontSize: 16,
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 15,
-    borderRadius: 25,
-  },
-  touchable: {
-    alignSelf: 'center',
-    borderRadius: 15,
-    backgroundColor: '#247574',
-    padding: 10,
-    textAlign: 'center',
-  },
-  touchableText: {
-    fontWeight: '500',
-    color: '#ffffff',
-  },
-});
+export const Container = styled.View`
+  padding: 10px 0px;
+  background-color: ${({theme}) => theme.colors.lightgray};
+  gap: 10px;
+`;
 
-export default styles;
+export const InputText = styled.TextInput`
+  font-size: 16px;
+  background-color: ${({theme}) => theme.colors.white};
+  padding: 0 15px;
+  border-radius: 25px;
+`;
+
+export const Button = styled.TouchableOpacity`
+  align-self: center;
+  border-radius: 15px;
+  background-color: ${({theme}) => theme.colors.secondary};
+  padding: 10px;
+  text-align: center;
+`;

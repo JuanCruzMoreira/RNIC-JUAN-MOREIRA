@@ -1,17 +1,11 @@
 import React, {useRef, useState} from 'react';
-import {
-  Keyboard,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
-import styles from './styles';
+import {Keyboard, TextInput, TouchableWithoutFeedback} from 'react-native';
+import Check from '../../assets/icons/Check';
+import {Container, InputText, Button} from './styles';
 import {AddTaskFormProps} from './types';
 
 const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
-  const {taskList, setTaskList} = props;
+  const {setTaskList} = props;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -24,15 +18,14 @@ const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
   };
 
   const handleOnPress = () => {
-    setTaskList([...taskList, newTask]);
+    setTaskList(taskList => [...taskList, newTask]);
     Keyboard.dismiss();
   };
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>
-        <TextInput
-          style={styles.textInput}
+      <Container>
+        <InputText
           placeholder="Title"
           onChangeText={setTitle}
           returnKeyType="next"
@@ -41,16 +34,15 @@ const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
           }}
           blurOnSubmit={false}
         />
-        <TextInput
-          style={styles.textInput}
+        <InputText
           placeholder="Description"
           onChangeText={setDescription}
           ref={descriptionInput}
         />
-        <TouchableOpacity style={styles.touchable} onPress={handleOnPress}>
-          <Text style={styles.touchableText}>Add Task</Text>
-        </TouchableOpacity>
-      </View>
+        <Button onPress={handleOnPress}>
+          <Check width={20} height={20} />
+        </Button>
+      </Container>
     </TouchableWithoutFeedback>
   );
 };
