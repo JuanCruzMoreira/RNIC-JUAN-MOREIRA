@@ -1,10 +1,11 @@
 import React, {useRef, useState} from 'react';
 import {Keyboard, TextInput, TouchableWithoutFeedback} from 'react-native';
-import {Container, InputText, Button, ButtonText} from './styles';
+import Check from '../../assets/icons/Check';
+import {Container, InputText, Button} from './styles';
 import {AddTaskFormProps} from './types';
 
 const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
-  const {taskList, setTaskList} = props;
+  const {setTaskList} = props;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -17,7 +18,7 @@ const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
   };
 
   const handleOnPress = () => {
-    setTaskList([...taskList, newTask]);
+    setTaskList(taskList => [...taskList, newTask]);
     Keyboard.dismiss();
   };
 
@@ -39,7 +40,7 @@ const AddTaskForm = (props: AddTaskFormProps): JSX.Element => {
           ref={descriptionInput}
         />
         <Button onPress={handleOnPress}>
-          <ButtonText>Add Task</ButtonText>
+          <Check width={20} height={20} />
         </Button>
       </Container>
     </TouchableWithoutFeedback>

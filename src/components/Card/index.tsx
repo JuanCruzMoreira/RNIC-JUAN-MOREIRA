@@ -21,8 +21,6 @@ const Card = (props: CardProps): JSX.Element => {
     uri: imageURL,
   });
 
-  // if (!imageURL) setImageURI(require('../../assets/images/fondoCard.jpg'));
-
   return (
     <Container>
       <BackgroundImg

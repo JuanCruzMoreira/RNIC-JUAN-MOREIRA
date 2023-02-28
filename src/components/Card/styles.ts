@@ -40,7 +40,7 @@ export const Description = styled.Text`
 
 export const ButtonsContainer = styled.View`
   flex-direction: row;
-  margin-top: 40px;
+  margin-top: 50px;
   gap: 5px;
   align-self: flex-end;
 `;

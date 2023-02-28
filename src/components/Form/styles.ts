@@ -20,8 +20,3 @@ export const Button = styled.TouchableOpacity`
   padding: 10px;
   text-align: center;
 `;
-
-export const ButtonText = styled.Text`
-  font-weight: 500;
-  color: ${({theme}) => theme.colors.white};
-`;

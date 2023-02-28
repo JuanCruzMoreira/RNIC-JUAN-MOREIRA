@@ -56,7 +56,7 @@ function App(): JSX.Element {
               ListEmptyComponent={emptyList}
             />
           </TaskList>
-          <AddTaskForm taskList={taskList} setTaskList={setTaskList} />
+          <AddTaskForm setTaskList={setTaskList} />
         </Container>
       </SafeArea>
     </ThemeProvider>
